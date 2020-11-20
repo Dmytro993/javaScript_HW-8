@@ -35,18 +35,22 @@ ulList.addEventListener("click", (event) => {
 
   changeImg.src = event.target.src;
 });
+overlay.addEventListener("click", removeIsOpen);
 
 btn.addEventListener("click", () => {
-  divElement.classList.remove("is-open");
   changeImg.src = "";
+  removeIsOpen();
 });
 
-overlay.addEventListener("click", () => {
+function removeIsOpen(){
   divElement.classList.remove("is-open");
-});
+};
 
 window.addEventListener("keydown", (event) => {
   if (event.code === "Escape") {
-    divElement.classList.remove("is-open");
+    removeIsOpen();
   }
 });
+window.removeEventListener("keydown",(event)=>{
+  event.code === "Escape"
+})
