@@ -32,25 +32,21 @@ ulList.addEventListener("click", (event) => {
     return;
   }
   divElement.classList.add("is-open");
-
   changeImg.src = event.target.src;
+  window.addEventListener("keydown", removeEscape)
 });
 overlay.addEventListener("click", removeIsOpen);
-
-btn.addEventListener("click", () => {
-  changeImg.src = "";
-  removeIsOpen();
-});
+btn.addEventListener("click", removeIsOpen)
 
 function removeIsOpen(){
   divElement.classList.remove("is-open");
+  changeImg.src = "";
+  window.removeEventListener("keydown",removeEscape)
 };
 
-window.addEventListener("keydown", (event) => {
+function removeEscape(event) {
   if (event.code === "Escape") {
     removeIsOpen();
   }
-});
-window.removeEventListener("keydown",(event)=>{
-  event.code === "Escape"
-})
+}
+
